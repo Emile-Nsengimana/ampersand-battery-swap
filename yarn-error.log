@@ -1,0 +1,34 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add express
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  12.18.4
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+npm manifest: 
+  {
+    "name": "ampersand-battery-swap",
+    "version": "1.0.0",
+    "main": "app.js",
+    "repository": "https://github.com/Emile-Nsengimana/ampersand-battery-swap.git",
+    "author": "Emile Nsengimana",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
