@@ -9,10 +9,9 @@ class MotocycleValidation {
    */
   static async motocycleDetailsValidator(req, res, next) {
     try {
-      const { serialNo, odometer, status, registrationPlate } = req.body;
+      const { serialNo, status, registrationPlate } = req.body;
       const motocycle = {
         serialNo,
-        odometer,
         status,
         registrationPlate,
       };
@@ -20,7 +19,6 @@ class MotocycleValidation {
       // basic requirement rules for a motocycle
       const schema = joi.object().keys({
         serialNo: joi.string().alphanum().min(5).required(),
-        odometer: joi.number().required(),
         status: joi.any().valid("inservice", "inactive"),
         registrationPlate: joi.string().alphanum(),
       });

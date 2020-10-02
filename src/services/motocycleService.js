@@ -9,10 +9,9 @@ class MotocycleService {
    * @returns {Object} created motocycle details
    */
   static async addMotocycle(motocycleDetails) {
-    const { serialNo, odometer, status, registrationPlate } = motocycleDetails;
+    const { serialNo, status, registrationPlate } = motocycleDetails;
     const newMotocycle = {
       serialNo,
-      odometer,
       status,
       registrationPlate,
     };

@@ -20,8 +20,11 @@ module.exports = {
       distance: {
         type: Sequelize.FLOAT
       },
-      stationId: {
+      StationId: {
         type: Sequelize.INTEGER
+      },
+      DriverId: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

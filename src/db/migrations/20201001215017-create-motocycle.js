@@ -11,9 +11,6 @@ module.exports = {
       serialNo: {
         type: Sequelize.STRING
       },
-      odometer: {
-        type: Sequelize.STRING
-      },
       registrationPlate: {
         type: Sequelize.STRING
       },
