@@ -1,6 +1,8 @@
 import express from 'express';
 import routes from './routes';
 import bodyParser from 'body-parser';
+import swaggerUI from 'swagger-ui-express';
+import swaggerJSDoc from '../swagger.json';
 
 const app = express();
 
@@ -9,9 +11,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(routes);
 
 const PORT = 3000;
-app.get('/', (req, res) => {
-  res.send('Welcome to Ampersand!');
-});
+// app.get('/', (req, res) => {
+//   res.send('Welcome to Ampersand!');
+// });
+
+// Swagger ui documentation
+app.use('/', swaggerUI.serve, swaggerUI.setup(swaggerJSDoc));
 
 app.listen(PORT, (err) => {
   if (err) {

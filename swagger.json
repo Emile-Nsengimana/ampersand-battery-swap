@@ -1,0 +1,489 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Ampersand battery swapp Documentation API",
+    "version": "1.0.0",
+    "description": "Ampersand battery swapp Documentation with Swagger"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Motocycle",
+      "description": "motocycle APIs"
+    },
+    {
+      "name": "Driver",
+      "description": "driver APIs"
+    },
+    {
+      "name": "Station",
+      "description": "station APIs"
+    },
+    {
+      "name": "Battery",
+      "description": "battery APIs"
+    },
+    {
+      "name": "Swapp",
+      "description": "swapp APIs"
+    }
+  ],
+  "schemes": ["https", "http"],
+  "consumes": ["application/json", "application/xml"],
+  "produces": ["application/json", "application/xml"],
+  "definitions": {
+    "register_motocycle": {
+      "required": ["serialNo", "status", "registrationPlate"],
+      "properties": {
+        "serialNo": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "registrationPlate": {
+          "type": "string"
+        }
+      }
+    },
+    "get_motocycle": {
+      "required": ["serialNo"],
+      "properties": {
+        "serialNo": {
+          "type": "string"
+        }
+      }
+    },
+    "register_driver": {
+      "required": [
+        "driverId",
+        "firstName",
+        "lastName",
+        "phoneNo",
+        "gender",
+        "motocycleSerialNo"
+      ],
+      "properties": {
+        "driverId": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phoneNo": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "motocycleSerialNo": {
+          "type": "string"
+        }
+      }
+    },
+    "get_driver": {
+      "required": ["driverId"],
+      "properties": {
+        "driverId": {
+          "type": "string"
+        }
+      }
+    },
+
+    "register_station": {
+      "required": ["location", "batteries"],
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "batteries": {
+          "type": "integer"
+        }
+      }
+    },
+    "get_station": {
+      "required": ["stationId"],
+      "properties": {
+        "stationId": {
+          "type": "integer"
+        }
+      }
+    },
+    "register_battery": {
+      "required": ["serialNo", "energyLevel"],
+      "properties": {
+        "serialNo": {
+          "type": "string"
+        },
+        "energyLevel": {
+          "type": "integer"
+        }
+      }
+    },
+    "get_battery": {
+      "required": ["serialNo"],
+      "properties": {
+        "serialNo": {
+          "type": "string"
+        }
+      }
+    },
+
+    "swapp_battery": {
+      "required": [
+        "oldBattery",
+        "newBattery",
+        "distance",
+        "stationId",
+        "driverId",
+        "currentEnergyLevel"
+      ],
+      "properties": {
+        "oldBattery": {
+          "type": "string"
+        },
+        "newBattery": {
+          "type": "string"
+        },
+        "distance": {
+          "type": "integer"
+        },
+        "stationId": {
+          "type": "string"
+        },
+        "driverId": {
+          "type": "string"
+        },
+        "currentEnergyLevel": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/motocycle": {
+      "post": {
+        "tags": ["Motocycle"],
+        "description": "Register a motocycle",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "registration of a motocycle",
+            "require": true,
+            "schema": {
+              "$ref": "#/definitions/register_motocycle"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "motocycle registered successful",
+            "schema": {
+              "$ref": "#/definitions/register_motocycle"
+            }
+          },
+          "409": {
+            "description": "motocycle already registered"
+          }
+        }
+      }
+    },
+    "/api/motocycle/{serialNo}": {
+      "get": {
+        "tags": ["Motocycle"],
+        "description": "Get a single motocycle details",
+        "parameters": [
+          {
+            "name": "serialNo",
+            "in": "path",
+            "description": "Motocycle details by serialNo",
+            "require": true
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "motocycle fetched successfully",
+            "schema": {
+              "$ref": "#/definitions/get_motocycle"
+            }
+          },
+          "404": {
+            "description": "motocycle not found"
+          }
+        }
+      }
+    },
+    "/api/motocycle/": {
+      "get": {
+        "tags": ["Motocycle"],
+        "description": "Get a list of all motocycles",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "all motocycles"
+          },
+          "404": {
+            "description": "no motocycle found"
+          }
+        }
+      }
+    },
+    "/api/driver": {
+      "post": {
+        "tags": ["Driver"],
+        "description": "Register a driver",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "registration of a driver",
+            "require": true,
+            "schema": {
+              "$ref": "#/definitions/register_driver"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "driver registered successful",
+            "schema": {
+              "$ref": "#/definitions/register_driver"
+            }
+          },
+          "409": {
+            "description": "driver already registered"
+          }
+        }
+      }
+    },
+    "/api/driver/{driverId}": {
+      "get": {
+        "tags": ["Driver"],
+        "description": "Get a single driver details",
+        "parameters": [
+          {
+            "name": "driverId",
+            "in": "path",
+            "description": "Driver details by driverId",
+            "require": true
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "driver details fetched successfully",
+            "schema": {
+              "$ref": "#/definitions/get_driver"
+            }
+          },
+          "404": {
+            "description": "driver not found"
+          }
+        }
+      }
+    },
+    "/api/driver/": {
+      "get": {
+        "tags": ["Driver"],
+        "description": "Get a list of all drivers",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "all driver"
+          },
+          "404": {
+            "description": "no driver found"
+          }
+        }
+      }
+    },
+
+    "/api/station": {
+      "post": {
+        "tags": ["Station"],
+        "description": "Register a station",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "registration of a station",
+            "require": true,
+            "schema": {
+              "$ref": "#/definitions/register_station"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "station registered successful",
+            "schema": {
+              "$ref": "#/definitions/register_station"
+            }
+          }
+        }
+      }
+    },
+    "/api/station/{stationId}": {
+      "get": {
+        "tags": ["Station"],
+        "description": "Get a single station details",
+        "parameters": [
+          {
+            "name": "stationId",
+            "in": "path",
+            "description": "station details by stationId",
+            "require": true
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "station fetched successfully",
+            "schema": {
+              "$ref": "#/definitions/get_station"
+            }
+          },
+          "404": {
+            "description": "station not found"
+          }
+        }
+      }
+    },
+    "/api/station/": {
+      "get": {
+        "tags": ["Station"],
+        "description": "Get a list of all stations",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "all stations"
+          },
+          "404": {
+            "description": "no station found"
+          }
+        }
+      }
+    },
+    "/api/battery": {
+      "post": {
+        "tags": ["Battery"],
+        "description": "Register a battery",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "registration of a battery",
+            "require": true,
+            "schema": {
+              "$ref": "#/definitions/register_battery"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "battery registered successful",
+            "schema": {
+              "$ref": "#/definitions/register_battery"
+            }
+          },
+          "409": {
+            "description": "battery already registered"
+          }
+        }
+      }
+    },
+    "/api/battery/{serialNo}": {
+      "get": {
+        "tags": ["Battery"],
+        "description": "Get a single battery details",
+        "parameters": [
+          {
+            "name": "serialNo",
+            "in": "path",
+            "description": "Battery details by serialNo",
+            "require": true
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "battery fetched successfully",
+            "schema": {
+              "$ref": "#/definitions/get_battery"
+            }
+          },
+          "404": {
+            "description": "battery not found"
+          }
+        }
+      }
+    },
+    "/api/battery/": {
+      "get": {
+        "tags": ["Battery"],
+        "description": "Get a list of all batteries",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "all batteries"
+          },
+          "404": {
+            "description": "no battery found"
+          }
+        }
+      }
+    },
+
+    "/api/swapp": {
+        "post": {
+          "tags": ["Swapp"],
+          "description": "swapp batteries",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "description": "battery swapp",
+              "require": true,
+              "schema": {
+                "$ref": "#/definitions/swapp_battery"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "201": {
+              "description": "battery swapped successful",
+              "schema": {
+                "$ref": "#/definitions/swapp_battery"
+              }
+            } 
+          }
+        }
+      },
+      "/api/swapp/": {
+        "get": {
+          "tags": ["Swapp"],
+          "description": "Get a list of all swapps",
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "all swapps"
+            },
+            "404": {
+              "description": "no swapp found"
+            }
+          }
+        }
+      }
+  }
+}

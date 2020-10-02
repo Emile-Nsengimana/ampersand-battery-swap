@@ -13,7 +13,7 @@ class SwappController {
       const swappDetails = {
         oldBattery: {
           serialNo: req.oldBattery.serialNo,
-          energyLevel: req.oldBattery.energyLevel,
+          energyLevel: currentEnergyLevel,
         },
         newBattery: {
           serialNo: req.newBattery.serialNo,
@@ -26,16 +26,16 @@ class SwappController {
       };
 
       // check if it's not the first time the driver comes for a swapp
-      const swapped = await SwappService.getSwappsByDriverId(driverId)[0];
-      if (swapped) {
-        swappDetails['distance'] = distance - swapped[0].distance;
+      const swapped = await SwappService.getSwappsByDriverId(driverId);
+       if (swapped.length > 0) {
+         swappDetails['distance'] = distance - swapped[0].distance;
         swappDetails['energyUsed'] = swapped[0].newBattery.energyLevel - currentEnergyLevel ;
       }
 
       const swapp = await SwappService.swapp(swappDetails);
 
       return res.status(201).json({
-        message: "swapped successful",
+        message: "battery swapped successful",
         swapp,
       });
     } catch (error) {
