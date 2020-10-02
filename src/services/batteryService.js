@@ -31,6 +31,15 @@ class BatteryService {
 
     return battery;
   }
+
+  /**
+   * @returns {Array.<Object>} a list of all batteries
+   */
+  static async getAllBattery() {
+    const batteries = await Battery.findAll();
+
+    return batteries;
+  }
 }
 
 export default BatteryService;

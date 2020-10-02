@@ -5,7 +5,14 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     phoneNo: DataTypes.STRING,
-    gender: DataTypes.STRING
+    gender: DataTypes.STRING,
+    MotocycleId: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        message: 'please provide driver\'s motocycle id'
+      }
+    }
   }, {});
   Driver.associate = function(models) {
     // associations can be defined here

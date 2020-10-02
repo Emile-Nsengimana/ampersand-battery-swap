@@ -23,6 +23,10 @@ module.exports = {
       gender: {
         type: Sequelize.STRING
       },
+      MotocycleId: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

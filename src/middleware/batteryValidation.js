@@ -16,27 +16,27 @@ class BatteryValidation {
 
       // basic requirement rules for battery details
       const schema = joi.object().keys({
-        serialNo: joi.string().min(5).max(16).required(),
+        serialNo: joi.string().min(3).max(16).required(),
         energyLevel: joi.number().required()
       });
 
       // validate if the battery details meets the requirements
       const checkBattery = schema.validate(battery, { abortEarly: false });
-      const Errors = [];
+      const errors = [];
 
       if (checkBattery.error) {
         const { details } = checkBattery.error;
         for (let i = 0; i < details.length; i += 1) {
-          Errors.push(details[i].message.replace('"', "").replace('"', ""));
+          errors.push(details[i].message.replace('"', "").replace('"', ""));
         }
-        return res.status(400).json({ message: Errors });
+        return res.status(400).json({ message: errors });
       }
 
       // check if the battery already registered
       const batteryRegistered = await BatteryService.getBattery(battery.serialNo);
       if (batteryRegistered)
         return res.status(409).json({
-          message: `Battery with serialNo: ${battery.serialNo} already registered`,
+          message: `battery with serialNo: ${battery.serialNo} already registered`,
         });
       next();
     } catch (error) {

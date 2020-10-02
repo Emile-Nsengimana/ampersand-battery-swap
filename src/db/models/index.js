@@ -36,10 +36,10 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // Association
-db.Driver.hasOne(db.Motocycle);
+db.Driver.belongsTo(db.Motocycle);
 db.Driver.hasMany(db.Swapp);
 
-db.Motocycle.belongsTo(db.Driver);
+db.Motocycle.hasOne(db.Driver);
 
 db.Station.hasMany(db.Swapp);
 

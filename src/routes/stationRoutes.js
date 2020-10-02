@@ -1,8 +1,11 @@
 import express from 'express';
+import StationController from "../controllers/stationController";
 
 const router = express.Router();
 
-// router.post('/auth/signup', userValidation.signupValidator, userController.registerUser);
-// router.get('/auth/signin', userValidation.signInValidator, userController.signIn);
+router.post('/', StationController.registerStation);
+router.get('/', StationController.getAllStation);
+router.get('/:stationId', StationController.getStation);
+
 
 export default router;

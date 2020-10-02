@@ -12,13 +12,14 @@ class DriverService {
    * @returns {Object} created driver details
    */
   static async createDriver(driverDetails) {
-    const { driverId, firstName, lastName, phoneNo, gender } = driverDetails;
+    const { driverId, firstName, lastName, phoneNo, gender, motocycleSerialNo } = driverDetails;
     const newDriver = {
       driverId,
       firstName,
       lastName,
       phoneNo,
       gender,
+      MotocycleId: motocycleSerialNo
     };
     const driver = (await Driver.create(newDriver)).get({ plain: true });
     return driver;
@@ -36,6 +37,16 @@ class DriverService {
     });
 
     return driver;
+  }
+
+  /**
+   *
+   * @returns {Array.Object} a list of all drivers
+   */
+  static async getAllDrivers() {
+    const drivers = await Driver.findAll();
+
+    return drivers;
   }
 }
 
