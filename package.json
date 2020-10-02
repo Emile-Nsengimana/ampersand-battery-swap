@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/app"
+    "start": "node build/app.js",
+    "dev": "nodemon --exec babel-node src/app",
+    "build": "babel src --out-dir build",
+    "create-db": "sequelize db:migrate"
   },
   "repository": "https://github.com/Emile-Nsengimana/ampersand-battery-swap.git",
   "author": "Emile Nsengimana",
@@ -19,13 +22,13 @@
     "joi": "^17.2.1",
     "json-web-token": "^3.2.0",
     "pg": "^8.3.3",
-    "pg-hstore": "^2.3.3"
+    "pg-hstore": "^2.3.3",
+    "@babel/polyfill": "^7.11.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
     "@babel/node": "^7.10.5",
-    "@babel/polyfill": "^7.11.5",
     "@babel/preset-env": "^7.11.0",
     "@babel/register": "^7.10.5",
     "eslint": "^7.2.0",

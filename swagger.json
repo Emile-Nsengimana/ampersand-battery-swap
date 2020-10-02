@@ -1,11 +1,11 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Ampersand battery swapp Documentation API",
+    "title": "Ampersand battery swapp APIs Documentation",
     "version": "1.0.0",
-    "description": "Ampersand battery swapp Documentation with Swagger"
+    "description": "Ampersand battery swapp APIs Documentation with Swagger"
   },
-  "host": "localhost:3000",
+  "host": "ampersand-battery-swap.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
@@ -202,7 +202,7 @@
           {
             "name": "serialNo",
             "in": "path",
-            "description": "Motocycle details by serialNo",
+            "description": "motocycle serial number",
             "require": true
           }
         ],
@@ -272,7 +272,7 @@
           {
             "name": "driverId",
             "in": "path",
-            "description": "Driver details by driverId",
+            "description": "driver id used when registering",
             "require": true
           }
         ],
@@ -340,7 +340,7 @@
           {
             "name": "stationId",
             "in": "path",
-            "description": "station details by stationId",
+            "description": "station id",
             "require": true
           }
         ],
@@ -410,7 +410,7 @@
           {
             "name": "serialNo",
             "in": "path",
-            "description": "Battery details by serialNo",
+            "description": "battery serial number",
             "require": true
           }
         ],
